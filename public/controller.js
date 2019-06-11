@@ -1,9 +1,17 @@
-var mainApp = angular.module('mainApp',['ngRoute']);
+var mainApp = angular.module('mainApp',['ngRoute','ui.bootstrap']);
 mainApp.config(['$routeProvider',function($routeProvider){
     $routeProvider
     .when('/',{
         templateUrl:'dashboard.html',
         controller:'dashboardController'
+    })
+    .when('/dashboard',{
+        templateUrl:'dashboard.html',
+        controller:'dashboardController'
+    })
+    .when('/orders',{
+        templateUrl:'orders.html',
+        controller:'orderController'
     })
     .otherwise({
         redirectTo:'/'
@@ -12,4 +20,108 @@ mainApp.config(['$routeProvider',function($routeProvider){
 mainApp.controller('dashboardController',function($scope){
     $scope.msg="india";
     console.log($scope.msg);
+    //for chart on dashboard
+    google.charts.load('current', {'packages':['corechart']});
+			google.charts.setOnLoadCallback(drawChart);
+			function drawChart() {
+				var dataTable = new google.visualization.DataTable();
+				dataTable.addColumn('string', 'Day');
+				dataTable.addColumn('number', 'Values');
+				// A column for custom tooltip content
+				dataTable.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
+				dataTable.addRows([
+					['MON',  130, ' '],
+					['TUE',  130, '130'],
+					['WED',  180, '180'],
+					['THU',  175, '175'],
+					['FRI',  200, '200'],
+					['SAT',  170, '170'],
+					['SUN',  250, '250'],
+					['MON',  220, '220'],
+					['TUE',  220, ' ']
+				]);
+
+				var options = {
+					height: 314,
+					legend: 'none',
+					areaOpacity: 0.18,
+					axisTitlesPosition: 'out',
+					hAxis: {
+						title: '',
+						textStyle: {
+							color: '#fff',
+							fontName: 'Proxima Nova',
+							fontSize: 11,
+							bold: true,
+							italic: false
+						},
+						textPosition: 'out'
+					},
+					vAxis: {
+						minValue: 0,
+						textPosition: 'out',
+						textStyle: {
+							color: '#fff',
+							fontName: 'Proxima Nova',
+							fontSize: 11,
+							bold: true,
+							italic: false
+						},
+						baselineColor: '#16b4fc',
+						ticks: [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350],
+						gridlines: {
+							color: '#1ba0fc',
+							count: 15
+						},
+					},
+					lineWidth: 2,
+					colors: ['#fff'],
+					curveType: 'function',
+					pointSize: 5,
+					pointShapeType: 'circle',
+					pointFillColor: '#f00',
+					backgroundColor: {
+						fill: '#008ffb',
+						strokeWidth: 0,
+					},
+					chartArea:{
+						left:0,
+						top:0,
+						width:'100%',
+						height:'100%'
+					},
+					fontSize: 11,
+					fontName: 'Proxima Nova',
+					tooltip: {
+						trigger: 'selection',
+						isHtml: true
+					}
+				};
+
+				var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+				chart.draw(dataTable, options);
+            }
+            //end of chart on dashboard
+})
+mainApp.controller('orderController', function($scope){
+    $scope.msg="order";
+    console.log($scope.msg);
+    //for paging
+    $scope.totalItems = 170;
+    $scope.currentPage = 1;
+    
+    $scope.setPage = function (pageNo) {
+      $scope.currentPage = pageNo;
+    };
+    
+    $scope.pageChanged = function() {
+      log.log('Page changed to: ' + $scope.currentPage);
+     
+    };
+    $scope.pageChange = function(){
+        
+    }
+    $scope.maxSize = 5;
+    $scope.bigTotalItems = 40;
+    $scope.bigCurrentPage = 1;
 })

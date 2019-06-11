@@ -1,0 +1,119 @@
+<style>
+        .pagination {
+          display: inline-block;
+          width: 100%;
+        }
+        
+        .pagination a {
+          color: black;
+          float: left;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+        
+        .pagination a.active {
+          background-color: #4CAF50;
+          color: white;
+        }
+        
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+        </style>
+        
+<div ng-controller="orderController">
+        <section class="box-typical">
+				<header class="box-typical-header">
+					<div class="tbl-row">
+						<div class="tbl-cell tbl-cell-title">
+							<h3>Orders Table</h3>
+                        </div>
+                        <div class="input-group col-xl-5" style="margin-top: 10px; float: right;" >
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+                                  </span>
+                            </div>
+                    </div>
+				</header>
+				<div class="box-typical-body">
+					<div class="table-responsive">
+                            <table id="table-edit" class="table table-bordered table-hover">
+            
+                                    <thead>
+                                            
+                                    <tr>
+                                        <th width="1">
+                                            S.No.
+                                        </th>
+                                        <th>Order</th>
+                                        <th>Customer</th>
+                                        <th>Status</th>				
+                                        <th width="120">Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>12345</td>
+                                            <td>Client 1</td>
+                                           <td> <span class="label label-primary">Paid</span></td>
+                                            <td class="table-date">6 minutes ago</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                                <td>2</td>
+                                            <td>12345</td>
+                                            <td>Client 2</td>
+                                            <td><span class="label label-success">Active</span></td>
+                                            <td class="table-date">6 minutes ago</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                                <td>3</td>
+                                            <td>12345</td>
+                                            <td >Client 3</td>
+                                            <td><span class="label label-success">Active</span></td>
+                                            <td class="table-date">6 minutes ago</td>
+                                            
+                                        </tr>
+                                        <tr>	<td>4</td>
+                                            <td>12345</td>
+                                            <td >Client 4</td>
+                                            <td><span class="label label-success">Active</span></td>
+                                            <td class="table-date">6 minutes ago</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                                <td>5</td>
+                                            <td>12345</td>
+                                            <td >Client 1</td>
+                                            <td><span class="label label-success">Active</span></td>
+                                            <td class="table-date">6 minutes ago</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                                <td>6</td>
+                                                <td>12345</td>
+                                                <td >Client 1</td>
+                                                <td><span class="label label-success">Active</span></td>
+                                                <td class="table-date">6 minutes ago</td>
+                                                
+                                        </tr>
+                                        <tr>	<td>7</td>
+                                            <td>12345</td>
+                                            <td >Client 4</td>
+                                            <td><span class="label label-success">Active</span></td>
+                                            <td class="table-date">6 minutes ago</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+					</div>
+                </div><!--.box-typical-body-->
+                
+            </section>
+            
+            <div ng-controller="orderController">
+                    <ul uib-pagination ng-click="pageChange();" total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true"  num-pages="numPages"></ul>
+                      
+                       </div>           
+</div>
